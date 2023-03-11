@@ -1,61 +1,96 @@
-let playerScore = 0
-let cpuScore = 0
+hud('Welcome to Rock, Paper, Scissors. Please make your selection.')
 
 
 function cpuChoice () {
 const choices = ["rock", "paper", "scissors"];
 const getComputerInput= Math.floor(Math.random()* choices.length);
 cpuAnswer = choices[getComputerInput];
-console.log(cpuAnswer)
+//console.log(cpuAnswer)
 return cpuAnswer;    
 }
 
-function playerChoice () {
-let playInput = prompt('Choose your weapon. Rock, Paper, or Scissors.');
-playerAnswer = playInput.toLowerCase();
-return playerAnswer;
-}
 
- function playRound () { 
-      cpuChoice()
-      playerChoice()
-    if (cpuAnswer==='rock'&& playerAnswer === 'scissors'){
-        console.log('You Lose! Rock beats Scissors.')
-        cpuScore = cpuScore+1
-    }  else if (cpuAnswer==='scissors' && playerAnswer==='rock') {
-        console.log('You Win! Rock beats Scissors')
-        playerScore = playerScore+1
-    } else if (cpuAnswer==='paper'&&playerAnswer==='rock'){
-        console.log('You Lose! Paper beats Rock!')
-        cpuScore=CpuScore+1
-    } else if (cpuAnswer==='rock'&& playerAnswer==='paper'){
-        console.log('You Win! Paper beats Rock!')
-        playerScore = playerScore+1
-    } else if (cpuAnswer==='scissors'&& playerAnswer==='paper'){
-        console.log('You Lose! Scissors beats Paper')
-        cpuScore=cpuScore+1
-    } else if (cpuAnswer==='paper '&& playerAnswer==='scissors'){
-        console.log('You Win! Paper beats Scissors')
-        playerScore=playerScore+1
-    } else if (cpuAnswer===playerAnswer) {
-        console.log('It\'s a Draw!')
-    }}
-  let i=0 ; 
- function game(){
-   while ( i<5 ){
-    playRound()
-    console.log(playerScore)
-    console.log(cpuScore)
-    i++
+
+ function playRound (playerAnswer) { 
+   if (playerscore==5){
+    hud('You Win!')
+   } else if (cpuscore==5){
+    hud('You Lose...better luck next time.')
    } 
-   if (cpuScore>playerScore){
-       alert('You Lose! Better luck next time.')
-         
-    } else if (playerScore>cpuScore){
-       alert('You Win!') 
-    } else if(playerScore==cpuScore) {
-    alert('It\'s a Draw!')
-}
+   else cpuChoice() 
+    if (cpuAnswer==='rock'&& playerAnswer === 'scissors'){
+        hud('You Lose! Rock beats Scissors.')
+        cpuScore()
+    }  else if (cpuAnswer==='scissors' && playerAnswer==='rock') {
+        hud('You Win! Rock beats Scissors')
+        playerScore()
+    } else if (cpuAnswer==='paper'&&playerAnswer==='rock'){
+        hud('You Lose! Paper beats Rock!')
+        cpuScore()
+    } else if (cpuAnswer==='rock'&& playerAnswer==='paper'){
+        hud('You Win! Paper beats Rock!')
+        playerScore()
+    } else if (cpuAnswer==='scissors'&& playerAnswer==='paper'){
+        hud('You Lose! Scissors beats Paper')
+        cpuScore()
+    } else if (cpuAnswer ==='paper' && playerAnswer==='scissors'){
+        hud('You Win! Paper beats Scissors')
+        playerScore()
+    } else if (cpuAnswer===playerAnswer) {
+        action = 'It\'s a Draw!'
     }
+      
           
+}
 
+
+function rock() {
+   let playerAnswer = 'rock';
+   playRound('rock');
+   
+}
+
+function paper() {
+    let playerAnswer = 'paper';
+    playRound('paper');
+    //console.log(playerScore)
+}
+
+function scissors () {
+    let playerAnswer = 'scissors';
+    playRound('scissors');
+    //console.log(playerScore)
+}
+
+const rockbtn = document.querySelector('#rock');
+const paperbtn = document.querySelector('#paper');
+const scissorsbtn = document.querySelector('#scissors')
+
+rockbtn.addEventListener('click',rock)
+paperbtn.addEventListener('click', paper)
+scissorsbtn.addEventListener('click', scissors)
+
+let player1score = document.querySelector('#player1')
+let pcScore = document.querySelector('#cpu')
+
+let playerscore = 0
+let cpuscore = 0
+
+player1score.textContent = playerscore
+pcScore.textContent = cpuscore
+
+function playerScore() { 
+    playerscore = playerscore+1
+    player1score.textContent =  playerscore  
+}
+
+
+function cpuScore() {
+  cpuscore = cpuscore+1
+   pcScore.textContent = cpuscore
+}
+
+function hud(action) {
+const disp = document.querySelector('#actions')
+disp.textContent = action
+}
