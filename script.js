@@ -12,9 +12,9 @@ return cpuAnswer;
 
 
  function playRound (playerAnswer) { 
-   if (playerscore==5){
+   if (playerscore>=5){
     hud('You Win!')
-   } else if (cpuscore==5){
+   } else if (cpuscore>=5){
     hud('You Lose...better luck next time.')
    } 
    else cpuChoice() 
@@ -34,7 +34,7 @@ return cpuAnswer;
         hud('You Lose! Scissors beats Paper')
         cpuScore()
     } else if (cpuAnswer ==='paper' && playerAnswer==='scissors'){
-        hud('You Win! Paper beats Scissors')
+        hud('You Win! Scissors beats Paper')
         playerScore()
     } else if (cpuAnswer===playerAnswer) {
         action = 'It\'s a Draw!'
